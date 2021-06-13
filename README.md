@@ -135,3 +135,6 @@ NGC7789,
 NGC869,
 NGC884
 
+## Reporting Bugs?
+
+If you do notice a bug, make sure to post it in the issues section of the repository and use the bug report template provided. That way, we can quickly and effectively remove the bug from our programs.
