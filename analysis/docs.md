@@ -25,7 +25,7 @@ for i in range(len(cluster_parallaxes)):
             
 ```
 
-The link to the program is [here](https://github.com/rudrathegreat/Gaia-EDR3-Stellar-Clusters/blob/main/src/cluster_clean.py) and the link to the documentation is [here](https://github.com/rudrathegreat/Gaia-EDR3-Stellar-Clusters/blob/main/src/docs.md#cluster_cleanpy)
+The link to the program is [here](https://github.com/rudrathegreat/Gaia-EDR3-Stellar-Clusters/blob/main/src/cluster_clean.py) and the link to the documentation for the program is [here](https://github.com/rudrathegreat/Gaia-EDR3-Stellar-Clusters/blob/main/src/docs.md#cluster_cleanpy)
 
 ## What does it contain?
 
