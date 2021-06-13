@@ -15,7 +15,7 @@ def glob(cluster_name):
     return cluster_name in globs
 
 
-def plotpoints(x,y,cluster_name,cluster,argument):
+def plotpoints(x,y,cluster_name,cluster,argument,label=True):
     for i in range(len(cluster)):
         alpha = 1
         cmask = cluster_name==cluster[i]
@@ -28,12 +28,21 @@ def plotpoints(x,y,cluster_name,cluster,argument):
             globs = True
         if argument == "open":
             open_clusters = True
-        if globs :
-            if glob(cluster[i]) == True:
-                plt.plot(x[cmask],y[cmask],'.',ms=2,alpha=alpha,label=str(cluster[i]).split(" ")[0],zorder=0)
-        if open_clusters:
-            if glob(cluster[i]) == False:
-                plt.plot(x[cmask],y[cmask],'.',ms=2,alpha=alpha,label=str(cluster[i]).split(" ")[0],zorder=0)
+            
+        if label==False:    
+            if globs :
+                if glob(cluster[i]) == True:
+                    plt.plot(x[cmask],y[cmask],'.',ms=2,alpha=alpha,zorder=0)
+            if open_clusters:
+                if glob(cluster[i]) == False:
+                    plt.plot(x[cmask],y[cmask],'.',ms=2,alpha=alpha,zorder=0) 
+        if label==True:                   
+            if globs :
+                if glob(cluster[i]) == True:
+                    plt.plot(x[cmask],y[cmask],'.',ms=2,alpha=alpha,label=str(cluster[i]).split(" ")[0],zorder=0)
+            if open_clusters:
+                if glob(cluster[i]) == False:
+                    plt.plot(x[cmask],y[cmask],'.',ms=2,alpha=alpha,label=str(cluster[i]).split(" ")[0],zorder=0)
     return
 
 ############################### main #################################
@@ -48,20 +57,20 @@ else:
     print("eg python zp.py all")
     sys.exit()
     
-filename = "all.zeropoint.txt"
+filename = "../analysis/all.zeropoint.txt"
 
 # 0    1     2        3    4     5   6   7       8  9  10     11
 # gmag bp-rp zpoffset name nueff psc ecl soltype gl gb zpvals parallax
 gmag, bp_rp, zp, zp0, nueff, psc, ecl, soltype, gl, gb, par = np.loadtxt(filename, usecols=(0,1,2,10,4,5,6,7,8,9,11), unpack=True, dtype=float)
 
 # TRGB test
-trgb_mask = np.logical_and(gmag < 12, gmag > 8)
+trgb_mask = np.logical_and(gmag < 13, gmag > 9)
 
 # Zinn test
 #trgb_mask = gmag < 11
 
 # Riess et al test
-#trgb_mask = np.logical_and(gmag < 10, gmag > 6)
+trgb_mask = np.logical_and(gmag < 11.0, gmag > 6)
 
 trgb_gmag = gmag[trgb_mask]
 trgb_zpoff = zp[trgb_mask]
@@ -72,11 +81,12 @@ trgb_ecl = ecl[trgb_mask]
 trgb_gl = gl[trgb_mask]
 trgb_gb = gb[trgb_mask]
 trgb_soltype = soltype[trgb_mask]
-f = open("trgb.range.dat","w")
-for i in range(len(trgb_gmag)):
-    f.write(str(trgb_gmag[i])+" "+str(trgb_par[i])+" "+str(trgb_zpoff[i])+" "+str(trgb_psc[i])+" "+str(trgb_ecl[i])+" "+str(trgb_soltype[i])+" ")
-    f.write(str(trgb_bp_rp[i])+" "+str(trgb_gl[i])+" "+str(trgb_gb[i])+"\n")
-f.close()
+
+#f = open("trgb.range.dat","w")
+#for i in range(len(trgb_gmag)):
+#    f.write(str(trgb_gmag[i])+" "+str(trgb_par[i])+" "+str(trgb_zpoff[i])+" "+str(trgb_psc[i])+" "+str(trgb_ecl[i])+" "+str(trgb_soltype[i])+" ")
+#    f.write(str(trgb_bp_rp[i])+" "+str(trgb_gl[i])+" "+str(trgb_gb[i])+"\n")
+#f.close()
 
 cluster_name = np.loadtxt(filename, usecols=(3), unpack=True, dtype=str)
 cluster_list = list(set(cluster_name))
@@ -93,8 +103,22 @@ plt.figure(figsize=(20,10))
 ax = plt.subplot(111)
 plotpoints(bp_rp,gmag,cluster_name,cluster_list,argument)
 plt.axhline(14.0,alpha=0.5)
-rect = patches.Rectangle((0.5,9), width=2.0, height=2, alpha=0.1, facecolor='black',label='TRGB zone')
-ax.add_patch(rect)
+
+
+# indicate positions of TRGB, Cepheids and QSOs
+
+#                          colour start, magstart, colour width, mag height
+#rect1 = patches.Rectangle((0.5,9), width=2.0, height=2, alpha=0.1, facecolor='black',label='TRGB zone')
+#rect2 = patches.Rectangle((1.0,6), width=1.0, height=5, alpha=0.1, facecolor='blue',label='Cepheid zone')
+#rect3 = patches.Rectangle((0.3,16), width=0.7, height=2, alpha=0.3, facecolor='green',label='QSO zone')
+
+rect1 = patches.Rectangle((1.4,9), width=1.1, height=4, alpha=0.1, facecolor='black',label='TRGB zone')
+rect2 = patches.Rectangle((1.0,6), width=1.2, height=5.5, alpha=0.1, facecolor='blue',label='Cepheid zone')
+rect3 = patches.Rectangle((0.3,16), width=0.7, height=2, alpha=0.3, facecolor='green',label='QSO zone')
+
+ax.add_patch(rect1)
+ax.add_patch(rect2)
+ax.add_patch(rect3)
 plt.ylim(gmag_max,gmag_min)
 plt.xlabel('BP-RP')
 plt.ylabel('Gmag')
@@ -109,7 +133,7 @@ fmask = gmag<12
 
 plt.figure(figsize=(20,10))
 
-parlim = 0.20
+parlim = 0.10
 
 plt.subplot(515)
 plotpoints(gmag[mask],zp[mask]+zp0[mask],cluster_name[mask],cluster_list,argument)
@@ -121,13 +145,17 @@ plt.xlim(6.0,18.0)
 plt.ylim(-parlim,parlim)
 
 plt.subplot(513)
-plotpoints(gmag[mask],zp[mask],cluster_name[mask],cluster_list,argument)
+plotpoints(gmag[mask],zp[mask],cluster_name[mask],cluster_list,argument,label=False)
 plt.axvline(14.0,c='k',alpha=0.5)
 plt.axhline(0.0,c='b',alpha=0.5)
 plt.ylabel('zp offset [mas]')
 plt.xlabel('Gmag')
 plt.xlim(6.0,18.0)
 plt.ylim(-parlim,parlim)
+riess_corr_x = np.array((6.0,10.0,18.0))
+riess_corr_y = np.array((0.015,0.015,0.0)) 
+plt.step(riess_corr_x,riess_corr_y,c='g',alpha=1,label="Cepheids -15 uas correction")
+plt.legend()
 
 plt.subplot(514)
 plotpoints(gmag[mask],zp0[mask],cluster_name[mask],cluster_list,argument)
@@ -140,8 +168,6 @@ plt.ylim(-parlim,parlim)
 
 corr_mask = gmag < 10
 print("median correction for gmag<10 : ",np.median(zp0[corr_mask]))
-
-
 
 gmag_orig = np.copy(gmag)
 zp_orig = np.copy(zp)

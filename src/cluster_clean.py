@@ -58,7 +58,7 @@ else:
     print("python cluster_clean.py M67 20 18")
     sys.exit()
 
-filename = cluster+".csv"
+filename ="../cluster_data/"+cluster+".csv"
 print("reading "+filename)
 try:
     data = pd.read_csv(filename)
@@ -68,7 +68,7 @@ except:
 
 print("data file loaded")    
 
-statfile = cluster+".stats"
+statfile = "../stats/"+cluster+".stats"
 sfileloaded = False
 print("Looking for stats file "+statfile)
 try:
@@ -352,13 +352,13 @@ plt.axvline(median_parallax_2,label='Median parallax for 14 < G < 18, clipped')
 
 ###########################################################################################
 
-print("Saving plot as plots/"+cluster+".png")    
-plt.savefig("plots/"+cluster+".png")
+print("Saving plot as ../plots/"+cluster+".png")    
+plt.savefig("../plots/"+cluster+".png")
     
 if plotflag:
     plt.show()
 
-outputfilname = cluster+".zeropoint.txt"
+outputfilname = "../analysis/"+cluster+".zeropoint.txt"
 
 print()
 print("median parallaxes ZP-uncorrected, ZP-corrected: ",med_uncorrected, median_parallax_2)
@@ -403,9 +403,9 @@ def rdec(x,ndec):
 
 print(dec0)
 
-ftable = open("tabletex.append.txt","a")
-ftable.write(cluster+" & "+rdec(ra0,3)+" & $"+rdec(dec0,3)+"$ & $"+rdec(pmra0,2)+"$ & $"+rdec(pmdec0,2)+"$ & $"+rdec(pos_rmax,2)+"$ & $"+rdec(pm_rmax,2)+"$ & "+str(len(cluster_gmag))+"  \\\\ \n")
-ftable.close()
+#ftable = open("tabletex.append.txt","a")
+#ftable.write(cluster+" & "+rdec(ra0,3)+" & $"+rdec(dec0,3)+"$ & $"+rdec(pmra0,2)+"$ & $"+rdec(pmdec0,2)+"$ & $"+rdec(pos_rmax,2)+"$ & $"+rdec(pm_rmax,2)+"$ & "+str(len(cluster_gmag))+"  \\\\ \n")
+#ftable.close()
 
 #print(cluster," & ",rdec(ra0,3)," & $",rdec(dec0,3),"$ & $",rdec(pmra0,2),"$ & $",rdec(pmdec0,2),"$ & $",rdec(pos_rmax,2), "$ & $",rdec(pm_rmax,2), "$ & ",len(cluster_gmag),"  \\\\")
 

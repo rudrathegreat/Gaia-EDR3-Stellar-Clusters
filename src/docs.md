@@ -4,7 +4,7 @@ This documentation aims to explain the programs used in this study.
 
 ### `cluster_clean.py`
 
-`cluster_clean.py` aims to clean the data so that only stars that are known to be in the cluster are selected and further analysed. The approach we have used is a direct, yet conservative approach and uses data from the SIMBAD database on Gaia observations to plot the relevant properties of the cluster stars.
+`cluster_clean.py` aims to clean the data so that only stars that are considered to be in the cluster are selected and further analysed. The approach we have used is a direct, yet conservative approach and uses data from the SIMBAD database on Gaia observations to plot the relevant properties of the cluster stars.
 
 ### How to Run the Program
 
