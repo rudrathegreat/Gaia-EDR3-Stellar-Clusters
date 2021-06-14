@@ -125,15 +125,21 @@ for i in range(len(cluster_parallaxes)):
 
 ### `zp.py`
 
+`zp.py` aims to compare the stars of several clusters to each other and identify 'tip of the red giant branch' stars, also known as TRGB stars. With this program, we can gain insights into the properties of the stars of several clusters.
+
 ### How to Run the Program
 
 The program can be run as follows using Python 3 - 
 
 ```Bash
 
-python zp.py cluster_name
+python zp.py type_of_cluster
 
 ```
 
-The cluster name is not required when running the program. If a cluster name is not defined, then `zp.py` will collect the data from all the `.zeropoint.txt` files and display that instead.
+There are three options for the type of cluster. There is - 
+
+1. all
+2. open
+3. globs
 
