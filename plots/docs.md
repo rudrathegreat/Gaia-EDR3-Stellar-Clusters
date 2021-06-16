@@ -2,7 +2,7 @@
 
 This documentation aims to provide a better picture as to what the plots in this directory for all the clusters represent.
 
-## Figure 1: Generated Plot for NGC7789
+## Figure 1. Generated Plot for NGC7789
 ![Generated Plot for NGC7789](https://github.com/rudrathegreat/Gaia-EDR3-Stellar-Clusters/blob/main/plots/NGC7789.png)
 
 [Figure 1](#figure-1-generated-plot-for-ngc7789) above shows the generated plots for NGC7789 by `cluster_clean.py`, link to the code [here](https://github.com/rudrathegreat/Gaia-EDR3-Stellar-Clusters/blob/main/src/cluster_clean.py). 
@@ -21,3 +21,12 @@ To learn more about how `cluster_clean.py` works, visit the following documentat
 ![The Compiled Collection of Stars Selected](https://github.com/rudrathegreat/Gaia-EDR3-Stellar-Clusters/blob/main/plots/Gaia-EDR3-cluster-sample.png)
 
 [Figure 2](#figure-2-the-compiled-collection-of-stars-selected) above shows all the stars that are in all the clusters we have studied. Specifically, this plot shows the absolute magnitude of these stars (Gmag) based on their blue light to red light ratio (BP-RP). This plot was generated using `zp.py`, link to the code is [here](https://github.com/rudrathegreat/Gaia-EDR3-Stellar-Clusters/blob/main/src/zp.py) and the link to the documentation for this code is [here](https://github.com/rudrathegreat/Gaia-EDR3-Stellar-Clusters/blob/main/src/docs.md#zppy)
+
+## Figure 3. BP-RP vs Nueff
+![BP-RP Vs. Nueff](https://github.com/rudrathegreat/Gaia-EDR3-Stellar-Clusters/blob/main/plots/bp_rp_vs_nueff.png)
+
+[Figure 3](#figure-3-bp-rp-vs-nueff) above shows the relationship derived from the blue light to red light ratio (BP-RP) and the variable Nueff. The dots represent the stars that were being analysed in this study and the line shows the best-fit polynomial curve for the data. The best fit is - 
+
+f(x) = -0.00359974x^4 +0.0291391x^3 -0.03846824x^2 -0.21949758x +1.75909619
+
+This plot was generated using `bp_rp_vs_nueff.py`, ink to the code is [here](https://github.com/rudrathegreat/Gaia-EDR3-Stellar-Clusters/blob/main/src/bp_rp_vs_nueff.py) and the link to the documentation for this code is [here](https://github.com/rudrathegreat/Gaia-EDR3-Stellar-Clusters/blob/main/src/docs.md#bp_rp_vs_nueffpy)
