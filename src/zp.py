@@ -236,4 +236,3 @@ mscatt = np.array(mscatt)*2
 plt.errorbar(gbin,medians,yerr=mscatt,fmt='k+',ms=0,elinewidth=2)
 
 plt.show()
-
