@@ -3,6 +3,10 @@ Gaia EDR3 Parallax Zero Point
 
 This repository contains data from the Gaia Early Data Release 3 Data Set. This data set includes observations of stellar clusters made by the Gaia Telescope. This data is then analysed and then displayed in the form of figures, which are located in the `plots` folder.
 
+## Aim of Study
+
+The aim of the study is to analyse stellar clusters and determine if there is any systematic error in the GAIA EDR3 stellar cluster parallaxes. If so, how much is this error and what is causing the error.
+
 ## Cloning Project
 
 To clone the project, just copy and paste this (make sure you have git installed on your computer) - 
@@ -38,6 +42,8 @@ Data was used from the .csv files located [here](https://github.com/rudrathegrea
 ## Results
 
 To see what the results look like, refer to figures 1 and 2 below. These figures are explained in more detail [here](https://github.com/rudrathegreat/Gaia-EDR3-Stellar-Clusters/blob/main/plots/docs.md). Figures similar to figure 1 have been created for each of the stellar clusters analysed.
+
+What we find is that there is a small, systematic error in Gaia's parallax data which is dependent on the colour of the stars.
 
 ## Figure 1: Generated Plot for NGC7789
 ![Generated Plot for NGC7789](https://github.com/rudrathegreat/Gaia-EDR3-Stellar-Clusters/blob/main/plots/NGC7789.png)
