@@ -13,6 +13,12 @@ def remove_nan(x, y):
 
     return x_without_nan, y_without_nan
 
+def return_y(x, coeff):
+    y = 0
+    for i in range(len(coeff)):
+        y += coeff[i] * (x**((len(coeff)-1)-i))
+    return y
+
 filename = "../analysis/all.zeropoint.txt"
 # 0    1     2        3    4     5   6   7       8  9  10     11
 # gmag bp-rp zpoffset name nueff psc ecl soltype gl gb zpvals parallax
@@ -21,13 +27,20 @@ gmag, bp_rp, zp, zp0, nueff, psc, ecl, soltype, gl, gb, par = np.loadtxt(filenam
 bp_rp, nueff = remove_nan(bp_rp, nueff)
 bp_rp = np.array(bp_rp, dtype=np.float)
 nueff = np.array(nueff, dtype=np.float)
-polynomial = np.polyfit(bp_rp, nueff, deg=4)
-x = np.linspace(bp_rp.min(),bp_rp.max(),1000)
-y = (polynomial[0] * (x**4)) + (polynomial[1] * (x**3)) + (polynomial[2] * (x**2)) + (polynomial[3] * x) + polynomial[4]
+polynomial = np.polyfit(nueff, bp_rp, deg=4)
+x = np.linspace(nueff.min(),nueff.max(),1000)
+y = return_y(x, polynomial)
 print(polynomial)
-plt.plot(bp_rp, nueff, 'b.', alpha=0.1, label="Cluster stars")
+plt.plot(nueff, bp_rp, 'b.', alpha=0.1, label="Cluster stars")
 plt.plot(x, y, 'g-', alpha = 1, label="Best-fit polynomial curve")
-plt.xlabel('BP-RP')
-plt.ylabel('Nueff')
+plt.ylabel('BP-RP')
+plt.xlabel('Nueff')
 plt.legend()
 plt.show()
+
+x = 1.3
+y = return_y(x, polynomial)
+print(x, y)
+x = 1.6
+y = return_y(x, polynomial)
+print(x, y)

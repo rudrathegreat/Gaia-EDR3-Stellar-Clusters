@@ -131,7 +131,7 @@ frame = pd.DataFrame(data)
 # write the data set out as a CSV
 cluster = cluster.replace(' ', '_') 
 print("Writing data set to disk as "+cluster+".csv")
-frame.to_csv(cluster+".csv")
+frame.to_csv("../cluster_data/"+cluster+".csv")
 
 # extract relevant items from the data set
 source_id = data['source_id']
@@ -202,6 +202,7 @@ plt.ylim(19.5,5)
 
 # plot CMD
 plt.subplot(132)
+plt.title(cluster)
 plt.plot(bp_rp[~mask],gmag[~mask],marker_b,alpha=alpha_b)
 plt.plot(bp_rp[mask],gmag[mask],marker_g,alpha=alpha_g)
 plt.xlabel("BP-RP")
