@@ -130,7 +130,8 @@ parallaxes = parallaxes - zpvals
 #sfileloaded = False
 if sfileloaded == False and plotflag:
     # draw proper motion cloud, select center
-    fig, ax = plt.subplots(1,1)
+    fig, ax = plt.subplots(1,1, figsize=(20,10))
+    #fig.figure(figsize=(20,10))    
     thismanager = plt.get_current_fig_manager()
     thismanager.toolbar.zoom()
     ax.plot(pmra,pmdec,'b.',alpha=alpha_b)
@@ -188,6 +189,11 @@ print("Coords (deg) : ",np.around(ra0,6),np.around(dec0,6))
 print("==============================")
 print()            
 
+
+if cluster == "Berkeley_39":
+    ra0 = 116.7
+    dec0 = -4.67
+    
 # proper motion mask
 #pm_rmax /= 2
 pm_rad = np.sqrt((pmra-pmra0)**2+(pmdec-pmdec0)**2)
@@ -203,7 +209,7 @@ pos_rmax = (np.std(x1)+np.std(y1))/2.0
 print("sky selection radius = ",pos_rmax*60.0," min")
 
 if sfileloaded==False:
-    stats_file = '{}.stats'.format(cluster)
+    stats_file = '../stats/{}.stats'.format(cluster)
     print("Results saved to "+stats_file)
     with open(stats_file, "w") as file:
         file.write('X, Y, Xlow, Xhigh, Ylow, Yhigh, PM_Rad, sky_rad\n{} {} {} {} {} {} {} {}\n'.format(x0,y0,xlo,xhi,ylo,yhi,rad,pos_rmax))

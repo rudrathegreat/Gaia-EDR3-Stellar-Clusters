@@ -123,6 +123,10 @@ if cluster == "IC 4756":
     command += " and parallax > 1.5"
 if cluster == "NGC225":
     command += " and parallax > 1"
+if cluster == "NGC3680":
+    command += " and parallax > 0.7"
+if cluster == "NGC7654":
+    command += " and parallax > 0.3"
 # print the command
 print()
 print(command)
